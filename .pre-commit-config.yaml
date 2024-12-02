@@ -1,0 +1,51 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-lint
+        name: Ruff – Lint
+        entry: ruff check --force-exclude --fix
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
+
+      - id: ruff-format
+        name: Ruff – Format code
+        entry: ruff format --force-exclude
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
+
+      - id: poetry-check
+        name: Poetry – Check `pyproject.toml`
+        entry: poetry check
+        language: system
+        pass_filenames: false
+        files: ^pyproject\.toml$
+
+      - id: poetry-check-lock
+        name: Poetry – Check `poetry.lock`
+        entry: poetry check --lock
+        language: system
+        pass_filenames: false
+        files: ^pyproject\.toml|poetry\.lock$
+
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        entry: trailing-whitespace-fixer
+        language: system
+        types: [text]
+        stages: [pre-commit, pre-push, manual]
+
+      - id: end-of-file-fixer
+        name: Fix end of files
+        entry: end-of-file-fixer
+        language: system
+        types: [text]
+        stages: [pre-commit, pre-push, manual]
+
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+        entry: check-merge-conflict
+        args: [--assume-in-merge]
+        language: system
+        types: [text]
