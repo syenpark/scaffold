@@ -1,3 +1,2 @@
 install:
-  poetry shell
-  poetry install --with dev
+  poetry shell && poetry install --with dev
