@@ -3,7 +3,10 @@ name = "scaffold"
 version = "0.1.0"
 description = "A scaffold project for python ML/data science"
 authors = ["Syen Park <syen.park@connect.ust.hk>"]
+license = "MIT"
+packages = [{ include = "syenpark", from = "src"}]
 readme = "README.md"
+repository = "https://github.com/syenpark/scaffold"
 
 [tool.poetry.dependencies]
 python = "^3.12"
